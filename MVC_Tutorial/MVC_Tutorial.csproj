@@ -170,7 +170,7 @@
     <Compile Include="Models\ClientesModel.cs" />
     <Compile Include="Models\EntradaSaidaModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Models\LoginModels.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\QuartosModel.cs" />
     <Compile Include="Models\UtilizadoresModel.cs" />
     <Compile Include="Global.asax.cs">

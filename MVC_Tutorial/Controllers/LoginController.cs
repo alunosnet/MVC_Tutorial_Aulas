@@ -16,7 +16,7 @@ namespace MVC_Tutorial.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(LoginModels utilizador)
+        public ActionResult Index(LoginModel utilizador)
         {
             if (ModelState.IsValid)
             {
@@ -28,6 +28,7 @@ namespace MVC_Tutorial.Controllers
                 }
             }
             //terminar
+            return View(utilizador);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVC_Hotel.Models
 {
-    public class LoginModels
+    public class LoginModel
     {
         [Required(ErrorMessage ="Nome de utilizador é obrigatório")]
         public string nome { get; set; }
@@ -50,7 +50,7 @@ namespace MVC_Hotel.Models
             }
         }
 
-        public UtilizadoresModel validarLogin(LoginModels login)
+        public UtilizadoresModel validarLogin(LoginModel login)
         {
             string sql = "SELECT * FROM utilizadores WHERE nome=@nome AND ";
             sql += " ppasse=cast(HASHBYTES('SHA1',@password) as varchar)";
