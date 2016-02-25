@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MVC_Hotel.Models.ClientesModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Clientes</h2>
+
+<p>
+    @Html.ActionLink("Adicionar novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.morada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dada_nascimento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.morada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dada_nascimento)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
