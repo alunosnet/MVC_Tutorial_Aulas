@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC_Hotel.Models;
+using System.Web.Security;
 
 namespace MVC_Tutorial.Controllers
 {
@@ -26,8 +27,15 @@ namespace MVC_Tutorial.Controllers
                     ModelState.AddModelError("", "Login falhou. Tente novamente");
                     return View(utilizador);
                 }
+                else
+                {
+                    FormsAuthentication.SetAuthCookie(utilizadorLogado.nome, false);
+                    Session["perfil"] = utilizadorLogado.perfil;
+                    Session["nome"] = utilizadorLogado.nome;
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            //terminar
+           
             return View(utilizador);
         }
     }

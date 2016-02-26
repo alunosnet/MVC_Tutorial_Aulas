@@ -7,6 +7,7 @@ using MVC_Hotel.Models;
 
 namespace MVC_Tutorial.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         ClientesBD bd = new ClientesBD();
@@ -18,6 +19,7 @@ namespace MVC_Tutorial.Controllers
         }
 
         //adicionar clientes
+
         public ActionResult Create()
         {
             return View();
