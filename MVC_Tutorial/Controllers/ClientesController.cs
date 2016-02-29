@@ -25,11 +25,14 @@ namespace MVC_Tutorial.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ClientesModel novo)
+        public ActionResult Create(ClientesModel novo,HttpPostedFileBase fotografia)
         {
             if (ModelState.IsValid)
             {
-                bd.adicionarCliente(novo);
+                int id=bd.adicionarCliente(novo);
+                //fotografia
+                string imagem = Server.MapPath("~/Imagens/") + id.ToString() + ".jpg";
+                fotografia.SaveAs(imagem);
                 return RedirectToAction("Index");
             }
             return View(novo);

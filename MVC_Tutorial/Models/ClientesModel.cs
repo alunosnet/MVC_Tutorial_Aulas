@@ -39,6 +39,7 @@ namespace MVC_Hotel.Models
         [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "Tem de indicar a data de nascimento do cliente")]
         public DateTime dada_nascimento { get; set; }
+
     }
 
     public class ClientesBD
@@ -143,10 +144,10 @@ namespace MVC_Hotel.Models
 
             return lista;
         }
-        public void adicionarCliente(ClientesModel novo)
+        public int adicionarCliente(ClientesModel novo)
         {
             string sql = "INSERT INTO Clientes(nome,morada,cp,email,telefone,data_nascimento) VALUES ";
-            sql+= " (@nome,@morada,@cp,@email,@telefone,@data)";
+            sql+= " (@nome,@morada,@cp,@email,@telefone,@data);SELECT cast(scope_identity() as int);";
             SqlCommand comando = new SqlCommand(sql, ligacaoBD);
             comando.Parameters.AddWithValue("@nome", (string)novo.nome);
             comando.Parameters.AddWithValue("@morada", (string)novo.morada);
@@ -155,18 +156,9 @@ namespace MVC_Hotel.Models
             if(novo.telefone!=null) comando.Parameters.AddWithValue("@telefone", (string)novo.telefone);
             else comando.Parameters.AddWithValue("@telefone", "");
             comando.Parameters.AddWithValue("@data", (DateTime)novo.dada_nascimento);
-            try {
-                comando.ExecuteNonQuery();
-            }catch(Exception erro)
-            {
-                Debug.Write(erro.Message);
-            }
-            finally
-            {
-                Debug.Write("Sem erros");
-            }
+            int id = (int)comando.ExecuteScalar();
             comando.Dispose();
-            return;
+            return id;
         }
         public void atualizarCliente(ClientesModel cliente)
         {

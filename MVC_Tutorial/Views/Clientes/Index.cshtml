@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.dada_nascimento)
         </th>
+        <th>
+            Fotografia
+        </th>
         <th></th>
     </tr>
 
@@ -51,6 +54,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dada_nascimento)
+        </td>
+        <td>
+            <img src="@Url.Content(String.Format("~/Imagens/{0}.jpg",item.id))" width="100" />
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
