@@ -35,7 +35,7 @@
                     @if (Session["perfil"] != null && Session["perfil"].ToString() == "1")
                     {
                         <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                        <li>@Html.ActionLink("Entradas/Saídas", "Index", "EntradaSaida")</li>
+                        <li>@Html.ActionLink("Entradas/Saídas", "Index", "EntradasSaidas")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

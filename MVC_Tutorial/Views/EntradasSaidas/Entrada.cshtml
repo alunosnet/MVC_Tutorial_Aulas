@@ -1,0 +1,65 @@
+﻿@model MVC_Hotel.Models.EntradaSaidaModel
+
+@{
+    ViewBag.Title = "Entrada";
+}
+
+<h2>Entrada</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>EntradaSaidaModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_quarto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               <select id="id_quarto" name="id_quarto">
+                   <option value="-1">Escolha um quarto</option>
+                   @foreach(var item in ViewBag.listaQuartos)
+                   {
+                       <option value=@item.nr>@item.nr</option>
+                   }
+               </select>
+                @Html.ValidationMessageFor(model => model.id_quarto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="id_cliente" name="id_cliente">
+                    <option value="-1">Escolha um cliente</option>
+                    @foreach(var item in ViewBag.listaClientes)
+                    {
+                        <option value=@item.id>@item.nome</option>
+                     }
+                </select>
+                @Html.ValidationMessageFor(model => model.id_cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.data_entrada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.data_entrada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.data_entrada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -144,7 +144,7 @@ namespace MVC_Hotel.Models
         //entrada
         public void registarEntrada(EntradaSaidaModel novo)
         {
-            string sql = "INSERT INTO entradasaida (id_quarto,id_cliente,data_entrada) VALUES ";
+            string sql = "INSERT INTO entradasaida (id_quarto,id_clientes,data_entrada) VALUES ";
             sql += "(@id_quarto,@id_cliente,@data_entrada)";
             SqlCommand comando = new SqlCommand(sql,ligacaoBD);
             comando.Parameters.AddWithValue("@id_quarto", novo.id_quarto);
