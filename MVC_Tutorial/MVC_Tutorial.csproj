@@ -228,7 +228,7 @@
     <Content Include="Views\Utilizadores\Index.cshtml" />
     <Content Include="Views\Utilizadores\Edit.cshtml" />
     <Content Include="Views\Utilizadores\Create.cshtml" />
-    <Content Include="Views\LogOut\Index.cshtml" />
+    <Content Include="Views\LogOut\LoggedOut.cshtml" />
     <Content Include="Views\Quartos\Index.cshtml" />
     <Content Include="Views\Quartos\Create.cshtml" />
     <Content Include="Views\EntradasSaidas\Index.cshtml" />
