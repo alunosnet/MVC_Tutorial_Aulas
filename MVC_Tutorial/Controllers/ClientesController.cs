@@ -25,6 +25,7 @@ namespace MVC_Tutorial.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Create(ClientesModel novo,HttpPostedFileBase fotografia)
         {
             if (ModelState.IsValid)
@@ -51,6 +52,7 @@ namespace MVC_Tutorial.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Edit(ClientesModel dados)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace MVC_Tutorial.Controllers
             return View(dados);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Delete(ClientesModel dados)
         {
             bd.removerCliente(dados.id);
