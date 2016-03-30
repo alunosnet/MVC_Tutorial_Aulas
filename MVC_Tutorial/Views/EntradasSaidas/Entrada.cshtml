@@ -18,13 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.id_quarto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               <select id="id_quarto" name="id_quarto">
-                   <option value="-1">Escolha um quarto</option>
-                   @foreach(var item in ViewBag.listaQuartos)
-                   {
-                       <option value=@item.nr>@item.nr</option>
-                   }
-               </select>
+               @Html.DropDownList("id_quarto",new SelectList(ViewBag.listaQuartos,"nr","nr"), "Escolha um quarto")
                 @Html.ValidationMessageFor(model => model.id_quarto, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,13 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.id_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="id_cliente" name="id_cliente">
-                    <option value="-1">Escolha um cliente</option>
-                    @foreach(var item in ViewBag.listaClientes)
-                    {
-                        <option value=@item.id>@item.nome</option>
-                     }
-                </select>
+                @Html.DropDownList("id_cliente",new SelectList(ViewBag.listaClientes,"id","nome"),"Escolha um cliente")
                 @Html.ValidationMessageFor(model => model.id_cliente, "", new { @class = "text-danger" })
             </div>
         </div>

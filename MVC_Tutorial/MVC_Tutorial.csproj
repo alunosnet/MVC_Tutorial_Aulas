@@ -201,10 +201,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pesquisarClientes.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -234,6 +237,11 @@
     <Content Include="Views\EntradasSaidas\Index.cshtml" />
     <Content Include="Views\EntradasSaidas\Entrada.cshtml" />
     <Content Include="Views\EntradasSaidas\Saida.cshtml" />
+    <Content Include="Views\Clientes\Pesquisar.cshtml" />
+    <Content Include="Views\Utilizadores\Delete.cshtml" />
+    <Content Include="Views\Quartos\Edit.cshtml" />
+    <Content Include="Views\Quartos\Delete.cshtml" />
+    <Content Include="Views\Clientes\listaVendas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,7 +252,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>

@@ -31,6 +31,7 @@ namespace MVC_Tutorial.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Entrada(EntradaSaidaModel novo)
         {
             if (ModelState.IsValid)
@@ -46,6 +47,7 @@ namespace MVC_Tutorial.Controllers
             return View(bd.listaOcupados(id)[0]);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Saida(EntradaSaidaModel saida)
         {
             bd.registarSaida(saida);

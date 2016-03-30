@@ -26,18 +26,24 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    @if(Session["perfil"]!=null && Session["perfil"].ToString() == "0")
+                    @if (Session["perfil"] != null && Session["perfil"].ToString() == "0")
                     {
-                        <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                        <li>@Html.ActionLink("Quartos", "Index", "Quartos")</li>
-                        <li>@Html.ActionLink("Utilizadores", "Index", "Utilizadores")</li>
-                    }
-                    @if (Session["perfil"] != null && Session["perfil"].ToString() == "1")
-                    {
-                        <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                        <li>@Html.ActionLink("Entradas/Saídas", "Index", "EntradasSaidas")</li>
-                    }
-                </ul>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes</a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                                <li>@Html.ActionLink("Pesquisar", "Pesquisar", "Clientes")</li>
+                                <li>@Html.ActionLink("Vendas","Listavendas","Clientes")</li>
+                            </ul>
+                        </li>
+                            <li>@Html.ActionLink("Quartos", "Index", "Quartos")</li>
+                            <li>@Html.ActionLink("Utilizadores", "Index", "Utilizadores")</li>
+                            }
+                            @if (Session["perfil"] != null && Session["perfil"].ToString() == "1")
+                            {
+                                <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                                <li>@Html.ActionLink("Entradas/Saídas", "Index", "EntradasSaidas")</li>
+                            }
+                        </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

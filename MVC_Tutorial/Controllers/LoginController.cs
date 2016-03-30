@@ -17,6 +17,7 @@ namespace MVC_Tutorial.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Index(LoginModel utilizador)
         {
             if (ModelState.IsValid)
@@ -32,7 +33,11 @@ namespace MVC_Tutorial.Controllers
                     FormsAuthentication.SetAuthCookie(utilizadorLogado.nome, false);
                     Session["perfil"] = utilizadorLogado.perfil;
                     Session["nome"] = utilizadorLogado.nome;
-                    return RedirectToAction("Index", "Home");
+                    
+                    if (Request.QueryString["ReturnUrl"] == null)
+                        return RedirectToAction("Index", "Home");
+                    else
+                        return Redirect(Request.QueryString["ReturnUrl"].ToString());
                 }
             }
            

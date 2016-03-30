@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Pesquisar";
+}
+
+<h2>Pesquisar</h2>
+
+<form method="post" class="form-horizontal" id="form">
+    Pesquisar:<input type="text" name="tbNome" id="tbNome" class="form-control"/>
+    <input type="submit" value="Pesquisar" class="btn"/>
+</form>
+@if (ViewBag.listaClientes != null)
+{
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Morada
+        </th>
+        <th>
+            Código Postal
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th>
+            Data Nascimento
+        </th>
+        <th>
+            Fotografia
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.listaClientes)
+    {
+        <tr>
+            <td>
+                @Html.Raw(item.nome)
+            </td>
+            <td>
+                @Html.Raw(item.morada)
+            </td>
+            <td>
+                @Html.Raw(item.cp)
+            </td>
+            <td>
+                @Html.Raw(item.email)
+            </td>
+            <td>
+                @Html.Raw(item.telefone)
+            </td>
+            <td>
+                @Html.Raw(item.dada_nascimento)
+            </td>
+            <td>
+                <img src="@Url.Content(String.Format("~/Imagens/{0}.jpg", item.id))" width="100" />
+            </td>
+        </tr>
+    }
+
+</table>
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/pesquisarClientes.js"></script>

@@ -15,7 +15,7 @@ namespace MVC_Tutorial.Controllers
         // GET: Utilizadores
         public ActionResult Index()
         {
-            if (Session["perfil"].ToString() != "0")
+            if (Session["perfil"]==null || Session["perfil"].ToString() != "0")
                 return RedirectToAction("Index", "Home");
 
             return View(bd.lista());
@@ -32,6 +32,7 @@ namespace MVC_Tutorial.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Edit(UtilizadoresModel editar)
         {
             if (ModelState.IsValid)
@@ -51,6 +52,7 @@ namespace MVC_Tutorial.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Create(UtilizadoresModel dados)
         {
             if (ModelState.IsValid)
@@ -61,6 +63,16 @@ namespace MVC_Tutorial.Controllers
             return View(dados);
         }
 
-
+        public ActionResult Delete(string id)
+        {
+            return View(bd.lista(id)[0]);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public ActionResult Delete(UtilizadoresModel apagar)
+        {
+            bd.removerUtilizador(apagar.nome);
+            return RedirectToAction("index");
+        }
     }
 }

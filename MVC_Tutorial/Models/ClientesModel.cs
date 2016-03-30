@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Diagnostics;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace MVC_Hotel.Models
 {
@@ -191,15 +192,72 @@ namespace MVC_Hotel.Models
         }
         public void removerCliente(int id)
         {
-            string sql = "DELETE FROM Clientes WHERE id=@id";
-            List<SqlParameter> parametros = new List<SqlParameter>()
+            try {
+                string sql = "DELETE FROM Clientes WHERE id=@id";
+                List<SqlParameter> parametros = new List<SqlParameter>()
             {
                 new SqlParameter() {ParameterName="@id",SqlDbType=System.Data.SqlDbType.Int,Value=id }
             };
+                SqlCommand comando = new SqlCommand(sql, ligacaoBD);
+                comando.Parameters.AddRange(parametros.ToArray());
+                comando.ExecuteNonQuery();
+                comando.Dispose();
+            }
+            catch
+            {
+
+            }
+        }
+
+        internal object pesquisa(string nome)
+        {
+            string sql = "SELECT * FROM Clientes WHERE nome like @nome";
             SqlCommand comando = new SqlCommand(sql, ligacaoBD);
-            comando.Parameters.AddRange(parametros.ToArray());
-            comando.ExecuteNonQuery();
+            comando.Parameters.AddWithValue("@nome","%"+ (string)nome+"%");
+            SqlDataReader dados = comando.ExecuteReader();
+            List<ClientesModel> lista = new List<ClientesModel>();
+
+            while (dados.Read())
+            {
+                ClientesModel novo = new ClientesModel();
+                novo.id = int.Parse(dados[0].ToString());
+                novo.nome = dados[1].ToString();
+                novo.morada = dados[2].ToString();
+                novo.cp = dados[3].ToString();
+                novo.email = dados[4].ToString();
+                novo.telefone = dados[5].ToString();
+                novo.dada_nascimento = DateTime.Parse(dados[6].ToString());
+                lista.Add(novo);
+            }
             comando.Dispose();
+
+            return lista;
+        }
+        public class vendasPorClienteOBJ
+        {
+            public string nome;
+            public decimal valor;
+        };
+        public List<vendasPorClienteOBJ> vendasPorCliente()
+        {
+            string sql = "SELECT nome,sum(valor_pago) FROM entradasaida INNER JOIN Clientes ON entradasaida.id_clientes=Clientes.id GROUP BY id_clientes,nome;";
+            SqlCommand comando = new SqlCommand(sql, ligacaoBD);
+            SqlDataReader dados = comando.ExecuteReader();
+            List<vendasPorClienteOBJ> lista = new List<vendasPorClienteOBJ>();
+
+            while (dados.Read())
+            {
+                vendasPorClienteOBJ novo = new vendasPorClienteOBJ();
+                novo.nome = dados[0].ToString();
+                decimal valor = 0;
+                decimal.TryParse(dados[1].ToString(), out valor);
+                novo.valor = valor;
+                lista.Add(novo);
+            }
+            comando.Dispose();
+
+            return lista;
+
         }
     }
 }
